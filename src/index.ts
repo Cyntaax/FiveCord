@@ -7,7 +7,7 @@ import { delay } from "./utils/delay";
 // TODO Sort out imports/exports to make easy importing of required items when used in actual projects and remove the test bot into an examples folder!
 
 
-const client = new Client(new DiscordToken("NzE3NjY3MDc5NDM5Nzc3ODEy.Xtdq_g.aWJvFzcuaz-KPWDg6vFAVct2ib0"))
+const client = new Client(new DiscordToken("TOKEN"))
 
 client.onReady(async (e) => {
     Print(`Online as ${e.user.username}#${e.user.tag}`)
