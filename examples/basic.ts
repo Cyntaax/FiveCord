@@ -1,4 +1,4 @@
-import { Client, StatusType, DiscordToken, PresenceType } from './src'
+import { Client, StatusType, DiscordToken, PresenceType } from '../src'
 
 const client = new Client(new DiscordToken("TOKEN"))
 

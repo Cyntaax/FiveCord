@@ -2,7 +2,8 @@
   "name": "fivecord",
   "version": "0.2.0",
   "description": "A Discord Api Wrapper That Works For FXServer",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "dependencies": {
     "@types/axios": "^0.14.0",
     "@types/ws": "^7.2.4",
@@ -11,8 +12,22 @@
   },
   "devDependencies": {},
   "scripts": {
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "build": "tsc"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarryET/FiveCord.git"
+  },
+  "keywords": [
+    "discord",
+    "api",
+    "bot",
+    "client",
+    "fivem",
+    "discordapp",
+    "fxserver"
+  ],
   "author": "HarryET",
-  "license": "ISC"
+  "license": "Apache-2.0"
 }
