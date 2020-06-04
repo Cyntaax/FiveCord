@@ -1,9 +1,10 @@
 {
   "name": "fivecord",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A Discord Api Wrapper That Works For FXServer",
   "main": "index.js",
   "dependencies": {
+    "@types/axios": "^0.14.0",
     "@types/ws": "^7.2.4",
     "axios": "^0.19.2",
     "ws": "^7.3.0"

@@ -1,41 +1,30 @@
-import { DiscordToken } from "../classes/DiscordToken";
-
-const axios = require('axios');
-
-export enum ReqType {
-    GET,
-    POST
-}
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios'
 
 export class HttpManager {
-    token: string | undefined;
-    discord_api_url: string = "https://discord.com/api";
+    private _token!: string
+    private axios_instance!: AxiosInstance;
     constructor() { }
 
-    setToken(token: string) {
-        this.token = token;
+    set token(token: string) {
+        this._token = token
+        this.axios_instance = axios.create({
+            baseURL: 'https://discord.com/api',
+            headers: { "Authorization" : 'Bot ' + this._token }
+        })
     }
 
-    req(type: ReqType, endpoint: string) {
-        switch (type) {
-            case ReqType.GET:
-                return this.get(endpoint);
-            case ReqType.POST:
-                return this.post(endpoint);
-            default:
-                break;
+    get token(): string {
+        return this._token
+    }
+
+    async req<T, R>(method: AxiosRequestConfig["method"], endpoint: string, _data?: R | any): Promise<T | undefined> {
+        try {
+            const reqObj = method === 'GET' ?  { method, url: endpoint } : { method, url: endpoint, data: _data }
+            const { data } = await this.axios_instance.request<any, T | any>(reqObj)
+            return data
+        } catch(e) {
+            const d = e as AxiosError
+            console.log(d.response)
         }
-    }
-
-    private get(endpoint: string) {
-        axios.get(this.discord_api_url + endpoint, {}, { headers: { 'Authorization' : 'Bot ' + this.token }}).then(function (responce: any) {
-            return responce;
-        });
-    }
-
-    private post(endpoint: string) {
-        axios.post(this.discord_api_url + endpoint, {}, { headers: { 'Authorization' : 'Bot ' + this.token }}).then(function (responce: any) {
-            return responce;
-        });
     }
 }

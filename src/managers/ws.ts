@@ -27,12 +27,14 @@ export class WebsocketManager {
                 switch (json.t) {
                     case "READY":
                         s = json.s;
-                        client.user = new DiscordUser(json.d.username, json.d.discriminator, new Snowflake(json.d.id))
+                        // client.user = new DiscordUser(json.d.username, json.d.discriminator, new Snowflake(json.d.id))
                         this.hbm.update(hi, s)
                         this.hbm.start()
                         this.em.new(BotEvent.READY, json.d, client)
                         break;
-                
+                    case "MESSAGE_CREATE":
+                        this.em.new(BotEvent.MESSAGE_CREATE, json.d, client)
+                        break;
                     default:
                         s = json.s;
                         this.hbm.update(hi, s)
